@@ -1,0 +1,1 @@
+In this we tried to implement the cnn model and also used a pretrained model to recognize the three letter a b c so far

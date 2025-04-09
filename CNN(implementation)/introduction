@@ -1,0 +1,3 @@
+In this folder We will try and implement a cnn model for building our model for the sign language recognition.
+We will try to achieve good accuracy in cnn with static before moving to the dynamic part of our project
+I have used tensorflow here and the ASL dataset from kaggle.

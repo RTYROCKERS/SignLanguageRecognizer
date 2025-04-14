@@ -11,7 +11,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5)
 mp_draw = mp.solutions.drawing_utils
 
-data_dir = "./"  # Folder containing saved .npy files
+data_dir = "./media"  # Folder containing saved .npy files
 os.makedirs(data_dir, exist_ok=True)
 
 # Function to compute orientation (Yaw, Pitch, Roll)
@@ -57,7 +57,7 @@ for label in os.listdir(data_dir):
 clf = None
 
 
-model_path = "sign_language_model.pkl"
+model_path = "sign_language_model2.pkl"
 
 # Step 1: Load or Train the Model
 if os.path.exists(model_path):
@@ -132,6 +132,18 @@ while True:
     # Prediction if model is trained and hand is detected
     if clf and landmark_data:
         prediction = clf.predict([landmark_data])[0]
+        if prediction in ['n', 't']:
+            thumb_tip_x = landmarks[4][0]
+            middle_finger_x = landmarks[12][0]
+
+            # Determine handedness (Left or Right)
+            hand_label = results.multi_handedness[0].classification[0].label  # 'Left' or 'Right'
+
+            if (hand_label == 'Right' and thumb_tip_x < middle_finger_x) or \
+            (hand_label == 'Left' and thumb_tip_x > middle_finger_x):
+                prediction = 't'
+            else:
+                prediction = 'n'
         cv2.putText(frame, f"Prediction: {prediction}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 
                     1, (0, 255, 0), 2, cv2.LINE_AA)
 

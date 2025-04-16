@@ -1,0 +1,9 @@
+Our goal is to create a game that can teach people sign language so that when a disable person communicates he/she doesn't feel inferior.
+If this app comes out to be good in future then it can be then integrated into the curriculum of Students in schools so that we can head towards a better good
+
+WHAT IS THE APPROACH??
+these are the steps:-
+1. Create a cnn model that can detect hands with accuracy 
+2. Load and make this model into a frontend for better UI/UX
+3. Make and convert into a game where you will have to show a perfect sign for particular letter in order to score more in the game
+
